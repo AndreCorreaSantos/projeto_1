@@ -1,5 +1,7 @@
 import socket
 from pathlib import Path
+from database import Database
+
 from utils import extract_route, read_file, build_response
 from views import index
 
@@ -14,7 +16,10 @@ server_socket.listen()
 
 print(f'Servidor escutando em (ctrl+click): http://{SERVER_HOST}:{SERVER_PORT}')
 
+db = Database("notes")
+
 while True:
+
     client_connection, client_address = server_socket.accept()
 
     request = client_connection.recv(1024).decode()
@@ -27,7 +32,7 @@ while True:
     if filepath.is_file():
         response = build_response() + read_file(filepath)
     elif route == '':
-        response = index(request)
+        response = index(request,db)
     else:
         response = build_response()
 

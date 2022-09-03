@@ -1,8 +1,8 @@
 from distutils.command.build import build
 import urllib
 from utils import *
-
-def index(request):
+from database import Note
+def index(request,db):
     # A string de request sempre começa com o tipo da requisição (ex: GET, POST)
     resp = build_response()
     if request.startswith('POST'):
@@ -22,16 +22,18 @@ def index(request):
             valor = chave_valor[index+1:-1]
             params[chave] = urllib.parse.unquote_plus(valor)
 
-        notes = load_data("notes.json")
-        notes.append(params)
-        write_notes(notes)
+        newNote = Note(title=params["titulo"],content=params["detalhes"])
+        db.add(newNote)
+        
+        # notes = load_data("notes.json")
+        # notes.append(params)
+        # write_notes(notes)
+
         resp = build_response(code=303, reason='See Other', headers='Location: /')
 
     note_template = load_template('components/note.html')
-    notes_li = [
-    note_template.format(title=dados['titulo'], details=dados['detalhes'])
-    for dados in load_data('notes.json')
-    ]
+    notes = db.get_all()
+    notes_li = [ note_template.format(title=note.title, details=note.content) for note in notes]
     notes = '\n'.join(notes_li)
 
 

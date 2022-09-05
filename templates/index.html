@@ -25,7 +25,7 @@
     </div>
 
     <main class="container">
-      <!-- method="post" foi removido apenas para o exemplo funcionar sem o servidor -->
+
       <form class="form-card" method="post">
         <input
           class="form-card-title"
@@ -42,7 +42,10 @@
           name="id"
           placeholder="Digite o id"
         ></textarea>
-        <button class="btn" type="submit">Criar</button>
+        <button class="btn" type="submit">Registrar</button>
+        <label><input type="radio" name="option" value="1">Create</label>
+        <label><input type="radio" name="option" value="2">Update</label>
+        <label><input type="radio" name="option" value="3">Delete</label>
       </form>
         {notes}
     </main>

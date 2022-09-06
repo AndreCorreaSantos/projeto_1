@@ -24,8 +24,8 @@
       <span class="subtitle">Como o Post-it, mas com outro verbo</span>
     </div>
 
-    <main class="container">
-
+    <main>
+      <div class="container">
       <form class="form-card" method="post">
         <input
           class="form-card-title"
@@ -40,14 +40,16 @@
         ></textarea>
                 <textarea
           name="id"
-          placeholder="Digite o id"
+          placeholder="Digite o id caso queira atualizar ou deletar um card"
         ></textarea>
         <button class="btn" type="submit">Registrar</button>
         <label><input type="radio" name="option" value="1">Create</label>
         <label><input type="radio" name="option" value="2">Update</label>
         <label><input type="radio" name="option" value="3">Delete</label>
       </form>
+      <ul class="card-container">
         {notes}
+      </ul>
     </main>
 
     <script type="text/javascript" src="/templates/getit.js"></script>

@@ -22,14 +22,18 @@ def index(request,db):
             chave = chave_valor[0:index]
             valor = chave_valor[index+1:len(chave_valor)]
             params[chave] = urllib.parse.unquote_plus(valor)
-        if params["option"] == "1":
-            newNote = Note(title=params["titulo"],content=params["detalhes"],id=params["id"])
-            db.add(newNote)
-        if params["option"] == "2":
-            newNote = Note(title=params["titulo"],content=params["detalhes"],id=params["id"])
-            db.update(newNote)
-        if params["option"] == "3":
-            db.delete(params["id"])
+        try:
+            if params["option"] == "1":
+                newNote = Note(title=params["titulo"],content=params["detalhes"],id=params["id"])
+                db.add(newNote)
+            if params["option"] == "2":
+                newNote = Note(title=params["titulo"],content=params["detalhes"],id=params["id"])
+                db.update(newNote)
+            if params["option"] == "3":
+                db.delete(params["id"])
+        except:
+                newNote = Note(title=params["titulo"],content=params["detalhes"],id=params["id"])
+                db.add(newNote)
         
         # notes = load_data("notes.json")
         # notes.append(params)

@@ -78,6 +78,22 @@ body {
 
     transition: width 0.2s ease-out, padding-top 0.2s ease-out;
 }
+.btnsmall{
+    position: relative;
+    display: block;
+    padding: 5px 7px;
+
+    overflow: hidden;
+
+    border-width: 0;
+    outline: none;
+    border-radius: 5px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
+
+    background-color: #f7d736;
+
+    transition: background-color 0.3s;
+}
 
 .container{
     width: 100%;
